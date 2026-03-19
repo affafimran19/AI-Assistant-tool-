@@ -1,0 +1,10 @@
+# API key — GitHub par kabhi mat jao!
+.env
+.env.local
+.env.production
+
+# Vercel
+.vercel
+
+# Node
+node_modules

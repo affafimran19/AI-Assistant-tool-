@@ -1,0 +1,90 @@
+</p>
+      </div>
+
+      <!-- Model selector dropdown -->
+      <div class="model-selector">
+        <label for="modelSelect">Model</label>
+        <select id="modelSelect">
+          <option value="llama-3.3-70b-versatile">Llama 3.3 70B</option>
+          <option value="llama-3.1-70b-versatile">Llama 3.1 70B</option>
+          <option value="llama-3.1-8b-instant">Llama 3.1 8B</option>
+          <option value="mixtral-8x7b-32768">Mixtral 8×7B</option>
+          <option value="gemma2-9b-it">Gemma2 9B</option>
+        </select>
+      </div>
+    </header>
+
+    <!-- ── CHAT BOX ── -->
+    <div class="chatbox" id="chatbox">
+
+      <!-- Welcome screen (disappears after first message) -->
+      <div class="welcome" id="welcome">
+        <div class="welcome-emoji">👋</div>
+        <h2>Hi! I'm Affaf's Assistant</h2>
+        <p>Ask about his studies, hobbies, personality, family, or skills.</p>
+
+        <!-- Quick-start suggestion chips -->
+        <div class="chips">
+          <button class="chip" onclick="sendChip(this)">What is your name?</button>
+          <button class="chip" onclick="sendChip(this)">What do you study?</button>
+          <button class="chip" onclick="sendChip(this)">What are your hobbies?</button>
+          <button class="chip" onclick="sendChip(this)">Describe your personality</button>
+          <button class="chip" onclick="sendChip(this)">Tell me about your family</button>
+          <button class="chip" onclick="sendChip(this)">What are your skills?</button>
+        </div>
+      </div>
+
+    </div>
+    <!-- end .chatbox -->
+
+    <!-- ── INPUT AREA ── -->
+    <div class="input-area">
+      <textarea
+        id="userInput"
+        placeholder="Ask about Affaf…"
+        rows="1"
+      ></textarea>
+
+      <button id="askBtn" onclick="askAI()">
+        <span class="btn-icon">✦</span>
+        <span class="btn-label">Ask AI</span>
+      </button>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <footer>Powered by Groq · Built for Affaf Imran</footer>
+
+  </div>
+  <!-- end .wrapper -->
+
+  <!-- Step 3: Our JavaScript file -->
+  <script src="script.js"></script>
+</body>
+</html<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Affaf's AI Assistant</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <!-- Step 2: Our CSS file -->
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ── BACKGROUND DECORATION ── -->
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+
+  <!-- ── MAIN WRAPPER ── -->
+  <div class="wrapper">
+
+    <!-- ── HEADER ── -->
+    <header class="header">
+      <div class="avatar">🧑‍💻</div>
+
+      <div class="header-text">
+        <h1>Affaf's AI Assistant</h1>
+        <p>Ask me anything about Affaf ✨>
