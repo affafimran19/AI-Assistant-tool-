@@ -8,7 +8,7 @@
    1. CONFIG — API credentials & endpoint
    ───────────────────────────────────────────── */
 
-const API_URL = "/api/chat";
+/.netlify/functions/chat
 
 
 
