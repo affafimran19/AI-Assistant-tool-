@@ -1,77 +1,63 @@
-// ═══════════════════════════════════════════════
-// api/chat.js  —  Vercel Serverless Function
-//
-// Yeh kya karta hai:
-// 1. Browser se request aati hai (model + messages)
-// 2. Yeh function secret API key use karta hai
-// 3. Groq ko call karta hai
-// 4. Response browser ko bhejta hai
-//
-// API key kabhi browser tak nahi pahunchi! ✅
-// ═══════════════════════════════════════════════
+// api/chat.js — Netlify Serverless Function
 
-export default async function handler(req, res) {
+exports.handler = async function(event, context) {
 
-  // ── CORS Headers — browser ko allow karo ──
-  res.setHeader("Access-Control-Allow-Origin",  "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  // CORS headers
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  };
 
-  // Browser OPTIONS request handle karo (CORS preflight)
-  if (req.method === "OPTIONS") {
-    return res.status(200).end();
+  // OPTIONS preflight
+  if (event.httpMethod === "OPTIONS") {
+    return { statusCode: 200, headers, body: "" };
   }
 
-  // Sirf POST allow hai
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Sirf POST allowed hai" });
+  if (event.httpMethod !== "POST") {
+    return { statusCode: 405, headers, body: JSON.stringify({ error: "Only POST allowed" }) };
   }
 
   try {
-    // Browser se model aur messages lo
-    const { model, messages } = req.body;
+    const { model, messages } = JSON.parse(event.body);
 
-    // ── SECRET KEY — .env se lo, GitHub par nahi hai ──
     const apiKey = process.env.GROQ_API_KEY;
 
     if (!apiKey) {
-      return res.status(500).json({
-        error: "API key server par set nahi hai. Vercel environment variables check karo."
-      });
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({ error: "API key set nahi hai. Netlify environment variables check karo." })
+      };
     }
 
-    // ── Groq API call — server side se ──
-    const groqRes = await fetch(
-      "https://api.groq.com/openai/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type":  "application/json",
-          "Authorization": `Bearer ${apiKey}` // 🔒 Key yahan use hoti hai — server par!
-        },
-        body: JSON.stringify({
-          model:       model || "llama-3.3-70b-versatile",
-          max_tokens:  512,
-          temperature: 0.7,
-          messages:    messages
-        })
-      }
-    );
+    const groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model: model || "llama-3.3-70b-versatile",
+        max_tokens: 512,
+        temperature: 0.7,
+        messages: messages
+      })
+    });
 
-    // Groq error ho toh wapas bhejo
     if (!groqRes.ok) {
       const errData = await groqRes.json();
-      return res.status(groqRes.status).json({
-        error: errData?.error?.message || "Groq API error aayi"
-      });
+      return {
+        statusCode: groqRes.status,
+        headers,
+        body: JSON.stringify({ error: errData?.error?.message || "Groq API error" })
+      };
     }
 
-    // ✅ Groq ka jawab browser ko bhejo
     const data = await groqRes.json();
-    return res.status(200).json(data);
+    return { statusCode: 200, headers, body: JSON.stringify(data) };
 
   } catch (err) {
-    console.error("Server error:", err);
-    return res.status(500).json({ error: err.message });
+    return { statusCode: 500, headers, body: JSON.stringify({ error: err.message }) };
   }
-}
+};
