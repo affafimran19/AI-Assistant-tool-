@@ -1,7 +1,26 @@
-</p>
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Affaf's AI Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
 
-      <!-- Model selector dropdown -->
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+
+  <div class="wrapper">
+
+    <header class="header">
+      <div class="avatar">🧑‍💻</div>
+      <div class="header-text">
+        <h1>Affaf's AI Assistant</h1>
+        <p>Ask me anything about Affaf ✨</p>
+      </div>
       <div class="model-selector">
         <label for="modelSelect">Model</label>
         <select id="modelSelect">
@@ -14,16 +33,11 @@
       </div>
     </header>
 
-    <!-- ── CHAT BOX ── -->
     <div class="chatbox" id="chatbox">
-
-      <!-- Welcome screen (disappears after first message) -->
       <div class="welcome" id="welcome">
         <div class="welcome-emoji">👋</div>
         <h2>Hi! I'm Affaf's Assistant</h2>
         <p>Ask about his studies, hobbies, personality, family, or skills.</p>
-
-        <!-- Quick-start suggestion chips -->
         <div class="chips">
           <button class="chip" onclick="sendChip(this)">What is your name?</button>
           <button class="chip" onclick="sendChip(this)">What do you study?</button>
@@ -33,58 +47,20 @@
           <button class="chip" onclick="sendChip(this)">What are your skills?</button>
         </div>
       </div>
-
     </div>
-    <!-- end .chatbox -->
 
-    <!-- ── INPUT AREA ── -->
     <div class="input-area">
-      <textarea
-        id="userInput"
-        placeholder="Ask about Affaf…"
-        rows="1"
-      ></textarea>
-
+      <textarea id="userInput" placeholder="Ask about Affaf…" rows="1"></textarea>
       <button id="askBtn" onclick="askAI()">
         <span class="btn-icon">✦</span>
         <span class="btn-label">Ask AI</span>
       </button>
     </div>
 
-    <!-- ── FOOTER ── -->
     <footer>Powered by Groq · Built for Affaf Imran</footer>
 
   </div>
-  <!-- end .wrapper -->
 
-  <!-- Step 3: Our JavaScript file -->
   <script src="script.js"></script>
 </body>
-</html<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Affaf's AI Assistant</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
-  <!-- Step 2: Our CSS file -->
-  <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-
-  <!-- ── BACKGROUND DECORATION ── -->
-  <div class="bg-orb orb1"></div>
-  <div class="bg-orb orb2"></div>
-  <div class="bg-orb orb3"></div>
-
-  <!-- ── MAIN WRAPPER ── -->
-  <div class="wrapper">
-
-    <!-- ── HEADER ── -->
-    <header class="header">
-      <div class="avatar">🧑‍💻</div>
-
-      <div class="header-text">
-        <h1>Affaf's AI Assistant</h1>
-        <p>Ask me anything about Affaf ✨>
+</html>
