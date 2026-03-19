@@ -290,35 +290,9 @@ body {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  flex-shrink: 0;
-  margin-top: 3px;
-}
-.message.user .msg-icon {
-  background: linear-gradient(135deg, var(--accent2), var(--accent));
-  box-shadow: 0 3px 10px rgba(79,142,247,0.3);
-}
-.message.ai .msg-icon {
-  background: var(--card);
-  border: 1px solid var(--border);
-}
+ 
 
-/* The bubble itself */
-.bubble {
-  padding: 11px 15px;
-  border-radius: var(--radius-md);
-  font-size: 0.87rem;
-  line-height: 1.65;
-  word-break: break-word;
-}
-.message.user .bubble {
-  background: var(--user-bg);
-  border: 1px solid var(--user-border);
-  border-bottom-right-radius: 4px;
-  color: #bed0ff;
+
 }
 .message.ai .bubble {
   background: var(--ai-bg);
